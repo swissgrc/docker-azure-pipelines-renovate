@@ -1,0 +1,15 @@
+## Configuration values used when creating new releases
+
+## The labels that will be used to include issues in release notes.
+issue-labels-include:
+- Bug
+- Duplicate
+- Enhancement
+- Feature
+- Help Wanted
+- Improvement
+- Invalid
+- Question
+- WontFix
+- Dependencies
+- Documentation
