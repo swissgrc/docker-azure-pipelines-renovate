@@ -40,7 +40,7 @@ jobs:
       # Scan Docker image (not for release builds since we will have multiple tags)
       - name: Scan Docker image
         if: github.event_name != 'release'
-        uses: aquasecurity/trivy-action@81b9a6f5abb1047d697af7a3ca18c13f55a97315 # tag=0.6.1
+        uses: aquasecurity/trivy-action@cb606dfdb0d2b3698ace62192088ef4f5360b24f # tag=0.6.2
         with:
           image-ref: ${{ steps.meta.outputs.tags }}
           format: 'sarif'
