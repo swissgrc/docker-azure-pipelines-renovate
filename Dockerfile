@@ -1,4 +1,4 @@
-FROM node:18.7.0-bullseye-slim
+FROM node:18.8.0-bullseye-slim
 
 LABEL org.opencontainers.image.vendor="Swiss GRC AG"
 LABEL org.opencontainers.image.authors="Swiss GRC AG <opensource@swissgrc.com>"
@@ -22,7 +22,7 @@ RUN apt-get update -y && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=32.173.1
+ENV RENOVATE_VERSION=32.175.0
 
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
   npm cache clean --force && \
