@@ -1,4 +1,4 @@
-FROM node:18.9.1-bullseye-slim
+FROM node:18.10.0-bullseye-slim
 
 LABEL org.opencontainers.image.vendor="Swiss GRC AG"
 LABEL org.opencontainers.image.authors="Swiss GRC AG <opensource@swissgrc.com>"
