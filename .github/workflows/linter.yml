@@ -34,7 +34,7 @@ jobs:
       # Checkout the code base #
       ##########################
       - name: Checkout Code
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # renovate: tag=v3.0.2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3.1.0
         with:
           # Full Git history is needed to get a proper list of changed files
           fetch-depth: 0
@@ -43,7 +43,7 @@ jobs:
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: github/super-linter/slim@01d3218744765b55c3b5ffbb27e50961e50c33c5 # tag=v4.9.6
+        uses: github/super-linter/slim@bb2d833b08b6c288608686672b93a8a4589cdc49 # tag=v4.9.7
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: develop
