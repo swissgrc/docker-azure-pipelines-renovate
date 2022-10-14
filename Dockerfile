@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Prerequisites
 
-# renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
+#Disabled renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
 ENV CACERTIFICATES_VERSION=20210119
 
 # Ca-Certificates is required for connection to Azure DevOps
