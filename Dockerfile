@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Prerequisites
 
-# renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
+#Disabled renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
 ENV CACERTIFICATES_VERSION=20210119
 
 # Ca-Certificates is required for connection to Azure DevOps
@@ -22,7 +22,7 @@ RUN apt-get update -y && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=32.216.0
+ENV RENOVATE_VERSION=32.237.0
 
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
   npm cache clean --force && \
