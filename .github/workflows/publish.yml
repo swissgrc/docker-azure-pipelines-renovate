@@ -19,7 +19,7 @@ jobs:
       # Extract metadata (tags, labels) for Docker
       - name: Extract Docker metadata
         id: meta
-        uses: docker/metadata-action@12cce9efe0d49980455aaaca9b071c0befcdd702 # tag=v4.1.0
+        uses: docker/metadata-action@57396166ad8aefe6098280995947635806a0e6ea # tag=v4.1.1
         with:
           images: swissgrc/azure-pipelines-renovate
           tags: |
@@ -49,7 +49,7 @@ jobs:
       # Publish scan report to GitHub
       - name: Publish scan report to GitHub        
         if: ${{ github.event_name != 'release' && always() }}
-        uses: github/codeql-action/upload-sarif@807578363a7869ca324a79039e6db9c843e0e100 # tag=v2.1.27
+        uses: github/codeql-action/upload-sarif@cc7986c02bac29104a72998e67239bb5ee2ee110 # tag=v2.1.28
         with:
           sarif_file: trivy-results.sarif
 
