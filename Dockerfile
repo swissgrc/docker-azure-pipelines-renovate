@@ -31,10 +31,13 @@ RUN npm install -g renovate@${RENOVATE_VERSION} && \
 
 # Install Git
 
+#Disabled renovate: datasource=repology depName=debian_11_backports/git versioning=loose
+ENV GIT_VERSION=1:2.39.1-0.1~bpo11+1
+
 # Install from backports since renovate requires at least git 2.33.0
 RUN echo "deb http://deb.debian.org/debian bullseye-backports main" | tee /etc/apt/sources.list.d/bullseye-backports.list && \
     apt-get update && \
-    apt-get install -y --no-install-recommends -t bullseye-backports git=1:2.34.1-1~bpo11+1 && \
+    apt-get install -y --no-install-recommends -t bullseye-backports git=${GIT_VERSION} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     # Configure Git
