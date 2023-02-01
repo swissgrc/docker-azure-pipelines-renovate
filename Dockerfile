@@ -16,6 +16,8 @@ ENV CACERTIFICATES_VERSION=20210119
 # Ca-Certificates is required for connection to Azure DevOps
 RUN apt-get update -y && \
   apt-get install -y --no-install-recommends ca-certificates=${CACERTIFICATES_VERSION} && \
+  apt-get purge -y --auto-remove && \
+  apt-get autoremove && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
@@ -38,6 +40,8 @@ ENV GIT_VERSION=1:2.39.1-0.1~bpo11+1
 RUN echo "deb http://deb.debian.org/debian bullseye-backports main" | tee /etc/apt/sources.list.d/bullseye-backports.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends -t bullseye-backports git=${GIT_VERSION} && \
+    apt-get purge -y --auto-remove && \
+    apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     # Configure Git
