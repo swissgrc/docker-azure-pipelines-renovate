@@ -53,6 +53,16 @@ jobs:
         with:
           sarif_file: trivy-results.sarif
 
+      # Create Software Bill of Materials (SBOM) (not for release builds since we will have multiple tags)
+      - name: Create Software Bill of Materials (SBOM)
+        if: github.event_name == 'push'
+        uses: aquasecurity/trivy-action@9ab158e8597f3b310480b9a69402b419bc03dbd5 # tag=0.8.0
+        with:
+          image-ref: ${{ steps.meta.outputs.tags }}
+          format: 'github'
+          output: 'dependency-results.sbom.json'
+          github-pat: ${{ secrets.GH_TOKEN }}
+          
       # Login to Docker registry if not PR build
       - name: Log in to Docker Hub
         if: github.event_name != 'pull_request'
