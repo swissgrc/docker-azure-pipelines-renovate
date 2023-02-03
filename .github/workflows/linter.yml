@@ -1,50 +1,12 @@
----
-#################################
-#################################
-## Super Linter GitHub Actions ##
-#################################
-#################################
 name: Lint Code Base
 
-# Documentation:
-# https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
-#
-#################################################
-# Start the job on all pull requests on develop #
-#################################################
 on:
   pull_request:
     branches: [develop]
 
-###############
-# Set the Job #
-###############
 jobs:
-  build:
-    # Name the Job
+  lint-image:
     name: Lint Code Base
-    # Set the agent to run on
-    runs-on: ubuntu-latest
-
-    ##################
-    # Load all steps #
-    ##################
-    steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
-      - name: Checkout Code
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-        with:
-          # Full Git history is needed to get a proper list of changed files
-          fetch-depth: 0
-
-      ################################
-      # Run Linter against code base #
-      ################################
-      - name: Lint Code Base
-        uses: github/super-linter/slim@454ba4482ce2cd0c505bc592e83c06e1e37ade61 # v4.10.1
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: develop
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: swissgrc/.github/.github/workflows/lint-image.yml@main
+    secrets:
+      gh-token: ${{ secrets.GITHUB_TOKEN }}
