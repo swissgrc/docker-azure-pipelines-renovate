@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Prerequisites
 
-#Disabled renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
+# renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
 ENV CACERTIFICATES_VERSION=20210119
 
 # Ca-Certificates is required for connection to Azure DevOps
@@ -31,7 +31,7 @@ RUN npm install -g renovate@${RENOVATE_VERSION} && \
 
 # Install Git
 
-#Disabled renovate: datasource=repology depName=debian_11_backports/git versioning=loose
+# renovate: datasource=repology depName=debian_11_backports/git versioning=loose
 ENV GIT_VERSION=1:2.39.1-0.1~bpo11+1
 
 # Install from backports since renovate requires at least git 2.33.0
