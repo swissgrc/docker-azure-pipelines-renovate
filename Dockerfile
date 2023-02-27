@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Prerequisites
 
-#Disabled renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
+# renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
 ENV CACERTIFICATES_VERSION=20210119
 
 # Ca-Certificates is required for connection to Azure DevOps
@@ -22,7 +22,7 @@ RUN apt-get update -y && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=34.152.4
+ENV RENOVATE_VERSION=34.153.0
 
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
   npm cache clean --force && \
@@ -31,8 +31,8 @@ RUN npm install -g renovate@${RENOVATE_VERSION} && \
 
 # Install Git
 
-#Disabled renovate: datasource=repology depName=debian_11_backports/git versioning=loose
-ENV GIT_VERSION=1:2.39.1-0.1~bpo11+1
+# renovate: datasource=repology depName=debian_11_backports/git versioning=loose
+ENV GIT_VERSION=1:2.39.2-1~bpo11+1
 
 # Install from backports since renovate requires at least git 2.33.0
 RUN echo "deb http://deb.debian.org/debian bullseye-backports main" | tee /etc/apt/sources.list.d/bullseye-backports.list && \
