@@ -22,7 +22,7 @@ RUN apt-get update -y && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=35.1.2
+ENV RENOVATE_VERSION=35.2.0
 
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
   npm cache clean --force && \
