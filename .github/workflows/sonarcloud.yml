@@ -1,0 +1,14 @@
+name: SonarCloud
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  sonarcloud:
+    name: SonarCloud
+    uses: swissgrc/.github/.github/workflows/sonarcloud.yml@main
+    secrets:
+      gh-token: ${{ secrets.GITHUB_TOKEN }}
+      sonar-token: ${{ secrets.SONAR_TOKEN }}
