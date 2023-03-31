@@ -24,7 +24,7 @@ RUN apt-get update -y && \
 # renovate: datasource=npm depName=renovate
 ENV RENOVATE_VERSION=35.27.0
 
-RUN npm install -g renovate@${RENOVATE_VERSION} && \
+RUN npm install -g renovate@${RENOVATE_VERSION} --ignore-scripts && \
   npm cache clean --force && \
   # Smoke test
   renovate --version
