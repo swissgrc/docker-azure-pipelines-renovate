@@ -1,16 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    "helpers:pinGitHubActionDigests"
-  ],
-  "labels": ["dependencies"],
-  "regexManagers": [
-    {
-      "fileMatch": ["(^|/)Dockerfile$", "(^|/)Dockerfile\\.[^/]*$"],
-      "matchStrings": [
-        "#\\srenovate:\\sdatasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?\\s(ENV|ARG) .*?_VERSION(\\s+|=)(?<currentValue>.*)\\s"
-      ]
-    }
+    "github>swissgrc/renovate-presets:docker"
   ]
 }
