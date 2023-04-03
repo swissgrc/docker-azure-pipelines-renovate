@@ -22,9 +22,10 @@ RUN apt-get update -y && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=35.31.0
+ENV RENOVATE_VERSION=35.31.5
 
-RUN npm install -g renovate@${RENOVATE_VERSION} --ignore-scripts && \
+# We need to run scripts here to have RE2 installed
+RUN npm install -g renovate@${RENOVATE_VERSION} && \
   npm cache clean --force && \
   # Smoke test
   renovate --version
