@@ -1,4 +1,4 @@
-FROM node:20.3.1-bullseye-slim
+FROM node:20.4.0-bullseye-slim
 
 LABEL org.opencontainers.image.vendor="Swiss GRC AG"
 LABEL org.opencontainers.image.authors="Swiss GRC AG <opensource@swissgrc.com>"
@@ -22,7 +22,7 @@ RUN apt-get update -y && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=36.6.0
+ENV RENOVATE_VERSION=36.7.0
 
 # We need to run scripts here to have RE2 installed
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
