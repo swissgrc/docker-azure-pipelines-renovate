@@ -1,4 +1,4 @@
-FROM node:20.4.0-bullseye-slim
+FROM node:20.4.0-bookworm-slim
 
 LABEL org.opencontainers.image.vendor="Swiss GRC AG"
 LABEL org.opencontainers.image.authors="Swiss GRC AG <opensource@swissgrc.com>"
@@ -10,8 +10,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Prerequisites
 
-# renovate: datasource=repology depName=debian_11/ca-certificates versioning=loose
-ENV CACERTIFICATES_VERSION=20210119
+# renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
+ENV CACERTIFICATES_VERSION=20230311
 
 # Ca-Certificates is required for connection to Azure DevOps
 RUN apt-get update -y && \
@@ -32,13 +32,12 @@ RUN npm install -g renovate@${RENOVATE_VERSION} && \
 
 # Install Git
 
-# renovate: datasource=repology depName=debian_11_backports/git versioning=loose
-ENV GIT_VERSION=1:2.39.2-1~bpo11+1
+# renovate: datasource=repology depName=debian_12/git versioning=loose
+ENV GIT_VERSION=1:2.39.2-1.1
 
 # Install from backports since renovate requires at least git 2.33.0
-RUN echo "deb https://deb.debian.org/debian bullseye-backports main" | tee /etc/apt/sources.list.d/bullseye-backports.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends -t bullseye-backports git=${GIT_VERSION} && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git=${GIT_VERSION} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     # Configure Git
