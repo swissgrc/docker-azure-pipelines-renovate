@@ -1,4 +1,4 @@
-FROM node:21.4.0-bookworm-slim
+FROM node:21.5.0-bookworm-slim
 
 LABEL org.opencontainers.image.vendor="Swiss GRC AG"
 LABEL org.opencontainers.image.authors="Swiss GRC AG <opensource@swissgrc.com>"
