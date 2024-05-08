@@ -11,7 +11,7 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-FROM base as Build
+FROM base as build
 
 # Make sure to fail due to an error at any stage in shell pipes
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -61,7 +61,7 @@ ENV GIT_VERSION=1:2.39.2-1.1
 
 # Install from backports since renovate requires at least git 2.33.0
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl git=${GIT_VERSION} && \
+    apt-get install -y --no-install-recommends git=${GIT_VERSION} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     # Configure Git
