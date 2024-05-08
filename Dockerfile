@@ -41,11 +41,6 @@ LABEL org.opencontainers.image.documentation="https://github.com/swissgrc/docker
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /
-# Copy Flux CLI from build stage
-COPY --from=build /usr/local/bin/flux /usr/local/bin/flux
-
-# Smoke test    
-RUN flux --version
 
 # Install Renovate
 
@@ -66,8 +61,18 @@ ENV GIT_VERSION=1:2.39.2-1.1
 # Install from backports since renovate requires at least git 2.33.0
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git=${GIT_VERSION} && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
     # Configure Git
     git config --global user.email 'bot@renovateapp.com' && \
     git config --global user.name 'Renovate Bot'
+
+# Install Flux CLI
+
+# Copy Flux CLI from build stage
+COPY --from=build /usr/local/bin/flux /usr/local/bin/flux
+
+# Smoke test    
+RUN flux --version
+
+# Clean up
+RUN apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
