@@ -19,15 +19,18 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # renovate: datasource=repology depName=debian_12/curl versioning=deb
 ENV CURL_VERSION=7.88.1-10+deb12u5
 
-# renovate: datasource=github-releases depName=fluxcd/flux2 extractVersion=^v(?<version>.*)$
-ENV FLUX_VERSION=2.2.3
-
 RUN apt-get update -y && \
     # Install necessary dependencies
     apt-get install -y --no-install-recommends curl=${CURL_VERSION}
 
 # Install the Flux CLI
-RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash
+
+# renovate: datasource=github-releases depName=fluxcd/flux2 extractVersion=^v(?<version>.*)$
+ENV FLUX_VERSION=2.2.3
+
+RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash && \
+    # Smoke test    
+    flux --version
 
 FROM base as final
 
