@@ -43,3 +43,13 @@ RUN apt-get update && \
     # Configure Git
     git config --global user.email 'bot@renovateapp.com' && \
     git config --global user.name 'Renovate Bot'
+
+# Install Flux CLI
+
+# renovate: datasource=github-releases depName=fluxcd/flux2
+ENV FLUX_VERSION=2.2.3
+
+# Strip 'v' prefix from FLUX_VERSION if it exists
+RUN FLUX_VERSION=$(echo $FLUX_VERSION | sed 's/^v//')
+
+RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash
