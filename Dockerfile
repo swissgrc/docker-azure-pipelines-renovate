@@ -28,9 +28,7 @@ RUN apt-get update -y && \
 # renovate: datasource=github-releases depName=fluxcd/flux2 extractVersion=^v(?<version>.*)$
 ENV FLUX_VERSION=2.2.3
 
-RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash && \
-    # Smoke test    
-    flux --version
+RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash
 
 FROM base as final
 
@@ -45,6 +43,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /
 # Copy Flux CLI from build stage
 COPY --from=build /usr/local/bin/flux /usr/local/bin/flux
+
+# Smoke test    
+RUN flux --version
 
 # Install Renovate
 
