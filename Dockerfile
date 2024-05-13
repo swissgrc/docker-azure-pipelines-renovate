@@ -26,7 +26,7 @@ RUN apt-get update -y && \
 # Install the Flux CLI
 
 # renovate: datasource=github-releases depName=fluxcd/flux2 extractVersion=^v(?<version>.*)$
-ENV FLUX_VERSION=2.2.3
+ENV FLUX_VERSION=2.3.0
 
 RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash
 
@@ -45,7 +45,7 @@ WORKDIR /
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=37.356.0
+ENV RENOVATE_VERSION=37.358.0
 
 # We need to run scripts here to have RE2 installed
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
