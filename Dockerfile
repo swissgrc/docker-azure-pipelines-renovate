@@ -45,7 +45,7 @@ WORKDIR /
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=37.382.1
+ENV RENOVATE_VERSION=37.385.0
 
 # We need to run scripts here to have RE2 installed
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
