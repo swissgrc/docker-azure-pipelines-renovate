@@ -1,4 +1,4 @@
-FROM node:21.7.3-bookworm-slim as base
+FROM node:21.7.3-bookworm-slim AS base
 
 # Prerequisites
 
@@ -11,7 +11,7 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-FROM base as build
+FROM base AS build
 
 # Make sure to fail due to an error at any stage in shell pipes
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -30,7 +30,7 @@ ENV FLUX_VERSION=2.3.0
 
 RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash
 
-FROM base as final
+FROM base AS final
 
 LABEL org.opencontainers.image.vendor="Swiss GRC AG"
 LABEL org.opencontainers.image.authors="Swiss GRC AG <opensource@swissgrc.com>"
