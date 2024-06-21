@@ -1,4 +1,4 @@
-FROM node:21.7.3-bookworm-slim AS base
+FROM ghcr.io/swissgrc/azure-pipelines-node:20.15.0-net8 AS base
 
 # Prerequisites
 
