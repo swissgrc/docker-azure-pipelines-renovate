@@ -1,4 +1,4 @@
-FROM ghcr.io/swissgrc/azure-pipelines-node:20.15.0-net8 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-node:22.3.0-net8 AS base
 
 # Prerequisites
 
