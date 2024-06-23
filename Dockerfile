@@ -1,16 +1,5 @@
 FROM ghcr.io/swissgrc/azure-pipelines-node:22.3.0-net8 AS base
 
-# Prerequisites
-
-# renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
-ENV CACERTIFICATES_VERSION=20230311
-
-# Ca-Certificates is required for connection to Azure DevOps
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends ca-certificates=${CACERTIFICATES_VERSION} && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 FROM base AS build
 
 # Make sure to fail due to an error at any stage in shell pipes
