@@ -1,15 +1,4 @@
-FROM node:21.7.3-bookworm-slim AS base
-
-# Prerequisites
-
-# renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
-ENV CACERTIFICATES_VERSION=20230311
-
-# Ca-Certificates is required for connection to Azure DevOps
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends ca-certificates=${CACERTIFICATES_VERSION} && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+FROM ghcr.io/swissgrc/azure-pipelines-node:22.3.0-net8 AS base
 
 FROM base AS build
 
@@ -42,28 +31,20 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /
 
+# Smoke test prerequisites
+RUN git version && \
+    dotnet --version
+
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=37.414.1
+ENV RENOVATE_VERSION=37.415.0
 
 # We need to run scripts here to have RE2 installed
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
     npm cache clean --force && \
     # Smoke test
     renovate --version
-
-# Install Git
-
-# renovate: datasource=repology depName=debian_12/git versioning=loose
-ENV GIT_VERSION=1:2.39.2-1.1
-
-# Install from backports since renovate requires at least git 2.33.0
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends git=${GIT_VERSION} && \
-    # Configure Git
-    git config --global user.email 'bot@renovateapp.com' && \
-    git config --global user.name 'Renovate Bot'
 
 # Install Flux CLI
 
@@ -72,6 +53,11 @@ COPY --from=build /usr/local/bin/flux /usr/local/bin/flux
 
 # Smoke test    
 RUN flux --version
+
+# Configure Git
+
+RUN git config --global user.email 'bot@renovateapp.com' && \
+    git config --global user.name 'Renovate Bot'
 
 # Clean up
 RUN apt-get clean && \
