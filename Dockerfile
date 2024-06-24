@@ -31,6 +31,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /
 
+# Smoke test prerequisites
+RUN git version && \
+    dotnet --version
+
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
@@ -42,18 +46,6 @@ RUN npm install -g renovate@${RENOVATE_VERSION} && \
     # Smoke test
     renovate --version
 
-# Install Git
-
-# renovate: datasource=repology depName=debian_12/git versioning=loose
-ENV GIT_VERSION=1:2.39.2-1.1
-
-# Install from backports since renovate requires at least git 2.33.0
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends git=${GIT_VERSION} && \
-    # Configure Git
-    git config --global user.email 'bot@renovateapp.com' && \
-    git config --global user.name 'Renovate Bot'
-
 # Install Flux CLI
 
 # Copy Flux CLI from build stage
@@ -61,6 +53,11 @@ COPY --from=build /usr/local/bin/flux /usr/local/bin/flux
 
 # Smoke test    
 RUN flux --version
+
+# Configure Git
+
+RUN git config --global user.email 'bot@renovateapp.com' && \
+    git config --global user.name 'Renovate Bot'
 
 # Clean up
 RUN apt-get clean && \
