@@ -6,7 +6,7 @@ FROM base AS build
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # renovate: datasource=repology depName=debian_12/curl versioning=deb
-ENV CURL_VERSION=7.88.1-10+deb12u5
+ENV CURL_VERSION=7.88.1-10+deb12u6
 
 RUN apt-get update -y && \
     # Install necessary dependencies
@@ -38,7 +38,7 @@ RUN git version && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=37.421.0
+ENV RENOVATE_VERSION=37.422.0
 
 # We need to run scripts here to have RE2 installed
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
