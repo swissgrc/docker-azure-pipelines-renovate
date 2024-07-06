@@ -1,4 +1,4 @@
-FROM ghcr.io/swissgrc/azure-pipelines-node:22.3.0-net8 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-node:22.4.0-net8 AS base
 
 FROM base AS build
 
@@ -38,7 +38,7 @@ RUN git version && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=37.422.0
+ENV RENOVATE_VERSION=37.424.2
 
 # We need to run scripts here to have RE2 installed
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
