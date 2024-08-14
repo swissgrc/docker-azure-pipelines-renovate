@@ -2,5 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>swissgrc/renovate-presets:docker"
+  ],
+  "packageRules": [
+    {
+      "matchDepNames": [ "ghcr.io/swissgrc/azure-pipelines-node" ],
+      "description": "No Node Major Updates",      
+      "extends": [ ":disableMajorUpdates" ]
+    }
   ]
 }
