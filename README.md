@@ -26,7 +26,11 @@ The following example shows the container used for running Renovate:
       target: swissgrc/azure-pipelines-renovate:latest
 ```
 
-### Tags
+## Included Software
+- [swissgrc/azure-pipelines-azurecli:net8](https://github.com/swissgrc/docker-azure-pipelines-azurecli-net8) as base image
+- Renovate
+
+## Tags
 
 <!-- markdownlint-disable MD013 -->
 | Tag      | Description                                     | Size                                                                                                                              |
