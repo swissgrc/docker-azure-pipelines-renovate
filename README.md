@@ -27,8 +27,9 @@ The following example shows the container used for running Renovate:
 ```
 
 ## Included Software
-- [swissgrc/azure-pipelines-azurecli:net8](https://github.com/swissgrc/docker-azure-pipelines-azurecli-net8) as base image
+- [swissgrc/azure-pipelines-node:net8](https://github.com/swissgrc/docker-azure-pipelines-node22-net8) as base image
 - Renovate
+- Flux
 
 ## Tags
 
