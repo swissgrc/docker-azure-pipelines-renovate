@@ -15,7 +15,7 @@ RUN apt-get update -y && \
 # Install the Flux CLI
 
 # renovate: datasource=github-releases depName=fluxcd/flux2 extractVersion=^v(?<version>.*)$
-ENV FLUX_VERSION=2.6.3
+ENV FLUX_VERSION=2.6.4
 
 RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash
 
