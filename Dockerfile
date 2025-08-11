@@ -1,4 +1,4 @@
-FROM ghcr.io/swissgrc/azure-pipelines-node:22.17.0-net9 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-node:22.18.0-net9 AS base
 
 FROM base AS build
 
