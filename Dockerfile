@@ -6,7 +6,7 @@ FROM base AS build
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # renovate: datasource=repology depName=debian_12/curl versioning=deb
-ENV CURL_VERSION=7.88.1-10+deb12u12
+ENV CURL_VERSION=7.88.1-10+deb12u14
 
 RUN apt-get update -y && \
     # Install necessary dependencies
