@@ -1,4 +1,4 @@
-FROM ghcr.io/swissgrc/azure-pipelines-node:22.21.0-net9 AS base
+FROM ghcr.io/swissgrc/azure-pipelines-node:24.11.1-net9 AS base
 
 FROM base AS build
 
@@ -15,7 +15,7 @@ RUN apt-get update -y && \
 # Install the Flux CLI
 
 # renovate: datasource=github-releases depName=fluxcd/flux2 extractVersion=^v(?<version>.*)$
-ENV FLUX_VERSION=2.7.3
+ENV FLUX_VERSION=2.7.5
 
 RUN curl -s https://fluxcd.io/install.sh | FLUX_VERSION=${FLUX_VERSION} bash
 
@@ -38,7 +38,7 @@ RUN git version && \
 # Install Renovate
 
 # renovate: datasource=npm depName=renovate
-ENV RENOVATE_VERSION=41.173.1
+ENV RENOVATE_VERSION=42.29.2
 
 # We need to run scripts here to have RE2 installed
 RUN npm install -g renovate@${RENOVATE_VERSION} && \
